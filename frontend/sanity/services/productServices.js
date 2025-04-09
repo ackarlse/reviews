@@ -31,7 +31,9 @@ export async function updateComments(user, comment, productid) {
   const result = await writeClient
     .patch(productid)
     .setIfMissing({ comments: [] })
-    .append("comments", [{ user: user, comment: comment }])
+    .append("comments", [
+      { user: { _type: "user", _ref: user }, comment: comment },
+    ])
     .commit({ autoGenerateArrayKeys: true })
     .then(() => {
       return "Success";
