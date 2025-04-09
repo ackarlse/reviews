@@ -22,3 +22,17 @@ export async function fetchUserBySlug(slug) {
   );
   return data;
 }
+
+export async function fetchAllCommentsFromUser(id) {
+  const data = await client.fetch(
+    `*[_type == "products"]{
+  "product":name,
+  "comments": comments[user._ref == $id]{
+    comment,
+  }
+}`,
+    { id }
+  );
+
+  return data;
+}
