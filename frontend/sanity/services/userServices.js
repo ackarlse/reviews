@@ -22,6 +22,13 @@ export async function fetchUserBySlug(slug) {
   );
   return data;
 }
+/*En fetch som henter en bruker basert på id, denne er foreløpelig statisk*/
+export async function fetchUserById() {
+  const data = await client.fetch(
+    `*[_type == "users" && _id == "58db69b2-45e8-4144-b56f-4fd7907d5840"]`
+  );
+  return data;
+}
 
 export async function fetchAllCommentsFromUser(id) {
   const data = await client.fetch(
